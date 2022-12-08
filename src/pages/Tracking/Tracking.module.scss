@@ -1,0 +1,24 @@
+.wrapper{
+    background-color: #F9FAF5;
+    padding-right: 10rem;
+
+    .title{
+        padding: 2.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .content{
+        padding: 2.5rem;
+
+        input{
+            padding: 1rem 1.5rem;
+            border: 0px;
+            border-radius:6px;
+            outline: none;
+            color: var(--text-color);
+            background-color: var(--secondary);
+        }
+    }
+}

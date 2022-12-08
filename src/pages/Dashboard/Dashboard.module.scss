@@ -1,0 +1,21 @@
+.wrapper{
+    background-color: #F9FAF5;
+    padding-right: 10rem;
+    position: relative;
+}
+
+.title{
+    padding: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.button_Add{
+    padding: 1.2rem 4rem;
+    border-radius: 4px;
+
+    background-color: #D3F36B;
+    font-size:16px;
+    font-weight: 600;
+    cursor: pointer;
+}
