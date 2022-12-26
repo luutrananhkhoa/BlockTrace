@@ -6,7 +6,7 @@ export const ABI =[
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "userDatabaseContractAddress",
+				"name": "FarmerDatabaseContractAddress",
 				"type": "address"
 			}
 		],
@@ -35,42 +35,29 @@ export const ABI =[
 	{
 		"inputs": [
 			{
-				"internalType": "string",
-				"name": "fullName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "userCccd",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "userEmail",
-				"type": "string"
-			},
-			{
 				"internalType": "uint256",
-				"name": "userCategory",
+				"name": "farmerCccd",
 				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "farmerName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "farmerEmail",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "farmerAddress",
+				"type": "string"
 			}
 		],
-		"name": "addUser",
+		"name": "addFarmer",
 		"outputs": [],
 		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "checkExistUser",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -82,49 +69,12 @@ export const ABI =[
 	},
 	{
 		"inputs": [],
-		"name": "getAllUser",
+		"name": "farmerDatabase",
 		"outputs": [
 			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "userId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "fullName",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "userCccd",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "userEmail",
-						"type": "string"
-					},
-					{
-						"internalType": "address",
-						"name": "userAddress",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "userCategory",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "userIsChecked",
-						"type": "bool"
-					}
-				],
-				"internalType": "struct User[]",
+				"internalType": "contract FarmerDatabase",
 				"name": "",
-				"type": "tuple[]"
+				"type": "address"
 			}
 		],
 		"stateMutability": "view",
@@ -132,49 +82,44 @@ export const ABI =[
 	},
 	{
 		"inputs": [],
-		"name": "login",
+		"name": "getAllFarmer",
 		"outputs": [
 			{
 				"components": [
 					{
 						"internalType": "uint256",
-						"name": "userId",
+						"name": "farmerId",
 						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "fullName",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "userCccd",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "userEmail",
-						"type": "string"
-					},
-					{
-						"internalType": "address",
-						"name": "userAddress",
-						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "userCategory",
+						"name": "farmerCccd",
 						"type": "uint256"
 					},
 					{
+						"internalType": "string",
+						"name": "farmerName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "farmerEmail",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "farmerAddress",
+						"type": "string"
+					},
+					{
 						"internalType": "bool",
-						"name": "userIsChecked",
+						"name": "farmerIsChecked",
 						"type": "bool"
 					}
 				],
-				"internalType": "struct User",
+				"internalType": "struct Farmer[]",
 				"name": "",
-				"type": "tuple"
+				"type": "tuple[]"
 			}
 		],
 		"stateMutability": "view",
@@ -205,24 +150,11 @@ export const ABI =[
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "userDatabase",
-		"outputs": [
-			{
-				"internalType": "contract UserDatabase",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
 	}
 ]
-export const ADDRESS = "0x7e4D4c22A74f9bA2A3cE9D54F63FB3d32692bDd4";
+export const ADDRESS = "0xd6B2cb1C8De1E8f3CE1401D8627eb2CbA0EAf858";
 
-export async function getContract() {
+export async function getContractFarmer() {
   const provider = await detectEthereumProvider();
   const web3 = new Web3(provider);
   return new web3.eth.Contract(ABI, ADDRESS);

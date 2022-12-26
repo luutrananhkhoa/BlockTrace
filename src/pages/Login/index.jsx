@@ -1,14 +1,17 @@
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveAddress } from '~/redux/slices/userSlice';
 import {getContract as getUserContract} from "~/contracts/userContract";
 
 import styles from './Login.module.scss'
 import Button from '~/components/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHouse, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import iconLogo from '~/assets/images/iconBlockTrace.png'
 
 const Login = () => {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   let address = useSelector((state)=>state.address)
@@ -38,9 +41,15 @@ const Login = () => {
         })
         .then((response)=>{
           console.log('response', response)
-  
+          
+          let { userId } = response
+          console.log('userId', userId)
+
+          localStorage.setItem('userId', userId)
+
           if(response.userIsChecked){
             navigate('/')
+            localStorage.setItem("isLogin", true);
           }else{
             alert('Chưa đăng ký tài khoản')
           }
@@ -56,24 +65,44 @@ const Login = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.section_left}>
-        
+        <div className={styles.icon}>
+          <img src={iconLogo} alt="icon" />
+        </div>
+        <h2>BLOCKTRACE</h2>
       </div>
       <div className={styles.section_right}>
         <div className={styles.content}>
-            <h4>Log in.</h4>
-            <h2>Welcome back!</h2>
+          <div className={styles.headerRegister}>
+            <div onClick={() => navigate(-1)} className={styles.iconContainer}>
+              <FontAwesomeIcon className={styles.menuIcon} icon={faArrowLeft} />
+              <p>Back</p>
+            </div>
+            <div onClick={() => navigate(-1)} className={styles.iconContainer}>
+              <FontAwesomeIcon className={styles.menuIcon} icon={faHouse} />
+              <p>Home</p>
+            </div>
+          </div>
+            <h2>Sign in</h2>
+            <p>Hi there, welcome back to BlockTrace!</p>
             {!address.address && 
               <div className={styles.button_container}> 
-                <Button primary onClick={onHandleConnect}>Connect to Metamask</Button>
+                <Button violet onClick={onHandleConnect}>Connect to Metamask</Button>
               </div>
             }
             <div className={`${styles.button_container } ${styles.button_second}`}> 
-              <Button onClick={onHandleLogin}>Login</Button>
+              <Button primary onClick={onHandleLogin}>Sign in</Button>
             </div>
-            <hr />
-            <div className={`${styles.button_container } ${styles.button_second}`}> 
-              <Button primary><Link to='/register'>Register</Link></Button>
-            </div>
+
+            <div className={styles.signUpContainer}>
+                <p className={styles.linkSignup_title}>Not yet register?</p>
+                <div className={styles.linkSignup}>
+                  <Link to='/register' className={styles.link}>Create account</Link>
+                </div>
+              </div>
+
+            {/* <div className={`${styles.button_container } ${styles.button_second}`}> 
+              <Button primary ><Link to='/register'>Register</Link></Button>
+            </div> */}
         </div>
       </div>
     </div>

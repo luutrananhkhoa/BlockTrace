@@ -5,82 +5,6 @@ export const ABI =[
 	{
 		"inputs": [
 			{
-				"internalType": "string",
-				"name": "userName",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "farmerName",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "ingressDate",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "ingressAddress",
-				"type": "string"
-			}
-		],
-		"name": "addIngress",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "batchId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "userName",
-				"type": "string"
-			},
-			{
-				"internalType": "uint256",
-				"name": "roughDate",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "roughAddress",
-				"type": "string"
-			}
-		],
-		"name": "addRough",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "warehouseAddress",
-				"type": "string"
-			}
-		],
-		"name": "addWarehouse",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "destroy",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
 				"internalType": "address",
 				"name": "warehouseDatabaseContractAddress",
 				"type": "address"
@@ -121,12 +45,95 @@ export const ABI =[
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
+				"internalType": "string",
+				"name": "userName",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "farmerCccd",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "ingressDate",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "ingressAddress",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "contractPhoto",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "keyValue",
+				"type": "uint256"
 			}
 		],
-		"name": "transferOwnership",
+		"name": "addIngress",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "batchId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "userName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "roughDate",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "roughAddress",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "processPhoto",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "keyValue",
+				"type": "uint256"
+			}
+		],
+		"name": "addRough",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "warehouseAddress",
+				"type": "string"
+			}
+		],
+		"name": "addWarehouse",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "destroy",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"
@@ -153,19 +160,29 @@ export const ABI =[
 						"type": "address"
 					},
 					{
-						"internalType": "string",
-						"name": "farmerName",
-						"type": "string"
+						"internalType": "uint256",
+						"name": "farmerCccd",
+						"type": "uint256"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "string",
 						"name": "ingressDate",
-						"type": "uint256"
+						"type": "string"
 					},
 					{
 						"internalType": "string",
 						"name": "ingressAddress",
 						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "contractPhoto",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "keyValue",
+						"type": "uint256"
 					},
 					{
 						"internalType": "bool",
@@ -203,14 +220,24 @@ export const ABI =[
 						"type": "address"
 					},
 					{
-						"internalType": "uint256",
+						"internalType": "string",
 						"name": "roughDate",
-						"type": "uint256"
+						"type": "string"
 					},
 					{
 						"internalType": "string",
 						"name": "roughAdress",
 						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "processPhoto",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "keyValue",
+						"type": "uint256"
 					},
 					{
 						"internalType": "bool",
@@ -296,6 +323,19 @@ export const ABI =[
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "warehouseDatabase",
 		"outputs": [
@@ -309,7 +349,7 @@ export const ABI =[
 		"type": "function"
 	}
 ]
-export const ADDRESS = "0x9fD9A4445D81935f67aacd362bD59CCCB3cf474a";
+export const ADDRESS = "0x4Da998B14673b138d3B2F71fDDF7B3b94804C137";
 
 export async function getContractProcessing() {
   const provider = await detectEthereumProvider();

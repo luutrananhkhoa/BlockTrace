@@ -1,37 +1,55 @@
-import { faBars, faUser, faRightFromBracket, faBoxOpen, faTrainSubway } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faUser, faRightFromBracket, faBoxOpen, faTrainSubway, faTractor,
+         faWarehouse, faBarcode, faBox} from '@fortawesome/free-solid-svg-icons'
+// import {  } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, NavLink } from 'react-router-dom'
 import styles from './Sidebar.module.scss'
+import logo from '~/assets/images/Logo.png'
 
 const Sidebar = () => {
+
+  useEffect(()=>{
+    let check = localStorage.getItem('userId')
+
+    console.log('userId in Sidebar', check)
+  },[])
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.sidebar}>
         <div className={styles.logoContainer}>
-          <h2>LOGO</h2>
+          <img src={logo} alt="" />
         </div>
         <div className={styles.menuList}>
-          <Link to='/' className={styles.menuItem}>
+          <NavLink to='/' className={styles.menuItem}>
             <FontAwesomeIcon className={styles.menuIcon} icon={faBars} />
             <p>Dashboard</p>
-          </Link>
-          <Link to='/users' className={styles.menuItem}>
+          </NavLink>
+          <NavLink to='/user' className={styles.menuItem}>
             <FontAwesomeIcon className={styles.menuIcon} icon={faUser} />
-            <p>Users</p>
-          </Link>
-          <Link to='/products' className={styles.menuItem}>
+            <p>User</p>
+          </NavLink>
+          <NavLink to='/farmer' className={styles.menuItem}>
+            <FontAwesomeIcon className={styles.menuIcon} icon={faTractor} />
+            <p>Farmer</p>
+          </NavLink>
+          <NavLink to='/product' className={styles.menuItem}>
             <FontAwesomeIcon className={styles.menuIcon} icon={faBoxOpen} />
-            <p>Products</p>
-          </Link>
-          <Link to='/tracking' className={styles.menuItem}>
-            <FontAwesomeIcon className={styles.menuIcon} icon={faTrainSubway} />
-            <p>Tracking</p>
-          </Link>
+            <p>Ingress</p>
+          </NavLink>
+          <NavLink to='/rough' className={styles.menuItem}>
+            <FontAwesomeIcon className={styles.menuIcon} icon={faBox} />
+            <p>Rough</p>
+          </NavLink>
+          <NavLink to='/warehouse' className={styles.menuItem}>
+            <FontAwesomeIcon className={styles.menuIcon} icon={faWarehouse} />
+            <p>Warehouse</p>
+          </NavLink>
         </div>
         
       </div>
-      <Link to='/login' className={styles.logout}>
+      <Link to='/login' onClick={()=>{localStorage.removeItem("isLogin")}} className={styles.logout}>
           <FontAwesomeIcon className={styles.menuIcon} icon={faRightFromBracket} />
           <p>Logout</p>
       </Link>

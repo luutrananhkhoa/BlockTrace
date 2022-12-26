@@ -13,7 +13,7 @@
     min-height: 400px;
     padding: 1rem 1.5rem;
     border-radius: 4px;
-    background-color: #F6E4FF;
+    background-color: #fff;
 
     .buttonContainer{
         width: 100%;
@@ -35,14 +35,18 @@
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    input{
+    input, select{
         padding: 1rem;
+        border: 1px solid #ccc;
+        border-radius:4px;
     }
     p{
         color:red;
         font-size:12px;
         margin-top: 0.2rem;
     }
+
+    
 }
 .button_Ok{
     padding: 1rem 4rem;

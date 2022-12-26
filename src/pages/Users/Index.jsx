@@ -39,9 +39,6 @@ const Users = () => {
                     <div className={styles.userCategory}>
                         <h3>Category</h3>
                     </div>
-                    <div className={styles.userCategory}>
-                        <h3>userIsChecked</h3>
-                    </div>
                 </div>
                 { listUsers.map((user,index)=>{
                     return(
@@ -53,10 +50,7 @@ const Users = () => {
                                 <p>{user.userAddress}</p>
                             </div>
                             <div className={styles.userCategory}>
-                                <p>{user.userCatergory}</p>
-                            </div>
-                            <div className={styles.userCategory}>
-                                <p>{user.userIsChecked==true?'true':'false'}</p>
+                                <p>{user.userCategory}</p>
                             </div>
                         </div>
                     ) 

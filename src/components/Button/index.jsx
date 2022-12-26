@@ -3,16 +3,11 @@ import { Link } from 'react-router-dom'
 import styles from './Button.module.scss'
 import clsx from 'clsx'
 
-const Button = ({to, href, primary, disable, children, onClick, ...passProps}) => {
+const Button = ({to, href, primary, violet, disable, children, onClick, ...passProps}) => {
     let Comp ='button'
     const props = {
         onClick,
         ...passProps
-    }
-    
-    let temp
-    if(primary){
-        temp =styles.primary
     }
 
     if(to){
@@ -24,7 +19,8 @@ const Button = ({to, href, primary, disable, children, onClick, ...passProps}) =
     }
 
     const classes = clsx(styles.wrapper,{
-        [styles.primary]: primary
+        [styles.primary]: primary,
+        [styles.violet]: violet,
     })
 
     return (

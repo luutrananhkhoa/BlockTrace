@@ -1,38 +1,70 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Register.module.scss'
-
+import { Link, useNavigate, NavLink } from 'react-router-dom';
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import Button from '~/components/Button';
-import { Link } from 'react-router-dom';
 import {getContract as getUserContract} from "~/contracts/userContract";
 import { useDispatch, useSelector } from 'react-redux';
 import { saveAddress } from '~/redux/slices/userSlice';
+import emailjs from '@emailjs/browser';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHouse, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+import iconLogo from '~/assets/images/iconBlockTrace.png'
 
 const Register = () => {
   let address = useSelector((state)=>state.address)
+  let navigate = useNavigate()
   const dispatch = useDispatch()
 
+  const [valuesEmail, setValuesEmail] = useState({
+    user_name: '',
+    user_email: '',
+    message: ''
+  });
 
   const formik = useFormik({
     initialValues: {
       // address:"",
       username: "",
-      userrole:""
+      userrole:"",
+      email: "",
+      identification: "",
     },
     validationSchema:Yup.object({
       // address: Yup.string('Require string').required('Required*'),
       username: Yup.string('Require string').required('Required*'),
-      userrole: Yup.string('Require string').required('Required*')
+      userrole: Yup.string('Require string').required('Required*'),
+      email: Yup.string('Require string').required('Required*'),
+      identification: Yup.string('Require string').required('Required*'),
     }),
     onSubmit: async (values)=>{
       console.log(values)
-      console.log('hfgf',address.address)
+      console.log('address',address.address)
+      let valuesTemp = {
+        user_name:values.username,
+        user_email:values.email,
+        message:"Xác nhận bạn đã đăng ký tài khoản",
+      }
+      setValuesEmail(valuesTemp)
 
       getUserContract().then((contract)=>{
-        contract.methods.addUser(values.username, values.userrole)
+        contract.methods.addUser(values.username, values.email, values.identification, values.userrole)
         .send({from: address.address})
-        .then((res)=>{console.log(res)}).catch((err)=>{console.log(err)})
+        .then((res)=>{
+          console.log(res)
+          if(res.status){
+            navigate("/login")
+
+            emailjs.send('service_n1iynk4', 'template_0wgwajc', valuesEmail, 'McUIWs_FHXPZgmsAI')
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+          }
+
+        }).catch((err)=>{console.log(err)})
       })
     }
   })
@@ -47,6 +79,7 @@ const Register = () => {
 
     dispatch(saveAddress(addressAccount))
 
+
     // setTimeout(()=>{
     //   navigate('/')
     // },1000)
@@ -55,11 +88,26 @@ const Register = () => {
   return (
     <div className={styles.wrapper}>
       <div className={styles.section_left}>
-        
+        <div className={styles.icon}>
+          <img src={iconLogo} alt="icon" />
+        </div>
+        <h2>BLOCKTRACE</h2>
       </div>
       <div className={styles.section_right}>
+
         <div className={styles.content}>
-            <h2>Register</h2>
+          <div className={styles.headerRegister}>
+            <NavLink to='/login' className={styles.iconContainer}>
+              <FontAwesomeIcon className={styles.menuIcon} icon={faArrowLeft} />
+              <p>Back</p>
+            </NavLink>
+            <NavLink to='/'  className={styles.iconContainer}>
+              <FontAwesomeIcon className={styles.menuIcon} icon={faHouse} />
+              <p>Home</p>
+            </NavLink>
+          </div>
+            <h2>Create new account</h2>
+            <p>Easily track accounts, transactions, and more</p>
             <div className={styles.form}>
               {/* <div className={styles.inputContainer}>
                 <label>Address</label>
@@ -76,6 +124,7 @@ const Register = () => {
                   <input 
                       type="text"
                       name="username" 
+                      value={address.address?address.address:""}
                       disabled
                     />  
                   <div className={styles.buttonMetamask}>
@@ -86,7 +135,7 @@ const Register = () => {
               </div>
  
               <div className={styles.inputContainer}>
-                <label>User Name</label>
+                <label>Full Name</label>
                 <input 
                   type="text"
                   name="username" 
@@ -95,6 +144,24 @@ const Register = () => {
                 <p>{formik.errors.username}</p>
               </div>
               <div className={styles.inputContainer}>
+                <label>Email</label>
+                <input 
+                  type="text"
+                  name="email" 
+                  value={formik.values.email}
+                  onChange={formik.handleChange}/>  
+                <p>{formik.errors.email}</p>
+              </div>
+              <div className={styles.inputContainer}>
+                <label>Identification</label>
+                <input 
+                  type="text"
+                  name="identification" 
+                  value={formik.values.identification}
+                  onChange={formik.handleChange}/>  
+                <p>{formik.errors.identification}</p>
+              </div>
+              {/* <div className={styles.inputContainer}>
                 <label>User Role</label>
                 <input 
                   type="text" 
@@ -102,16 +169,41 @@ const Register = () => {
                   value={formik.values.userrole}
                   onChange={formik.handleChange}/>  
                 <p>{formik.errors.userrole}</p>
+              </div> */}
+                <div className={styles.inputContainer}>
+                  <label>User Role</label>
+                  <select
+                  name="userrole"
+                  value={formik.values.userrole}
+                  onChange={formik.handleChange}>
+                     <option value="" label="Select a role">
+                      Select a role
+                    </option>
+                    <option value="0" label="Admin">
+                      Admin
+                    </option>
+                    <option value="1" label="Ingress">
+                      Ingress
+                    </option>
+                    <option value="2" label="Rough">
+                      Rough
+                    </option>
+                  </select>
+                  <p>{formik.errors.userrole}</p>
+                </div>
+            </div>
+            <div className={styles.footerRegister}>
+              <div className={styles.signUpContainer}>
+                <p className={styles.linkSignup_title}>Already have an account?</p>
+                <div className={styles.linkSignup}>
+                  <Link to='/login' className={styles.link}> Sign up</Link>
+                </div>
               </div>
 
-            </div>
-            <div className={styles.buttonContainer}>
-              <Button onClick={formik.handleSubmit}>Register</Button>
-            </div>
+              <div className={styles.buttonContainer}>
+                <Button primary onClick={formik.handleSubmit}>Register</Button>
+              </div>
 
-            <p className={styles.linkSignup_title}>Already have an account?</p>
-            <div className={styles.linkSignup}>
-              <Link to='/login' className={styles.link}>Sign up</Link>
             </div>
         </div>
       </div>

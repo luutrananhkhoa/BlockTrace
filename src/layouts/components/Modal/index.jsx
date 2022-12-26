@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styles from './Modal.module.scss'
 import closeIcon from '~/assets/images/Close.svg'
 import {getContractProcessing as getProcessingContract} from "~/contracts/processingContract"
@@ -6,10 +6,18 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup'
 // import { Context } from '~/context/Context';
 import { useDispatch, useSelector } from 'react-redux';
+import { saveQR } from '~/redux/slices/userSlice';
+import axios from 'axios';
+
+import emailjs from '@emailjs/browser';
 
 const Modal = (props) => {
 
-  const {setIsShown} = props;
+  const {setIsShown, setIsShownQR} = props;
+
+  const dispatch = useDispatch()
+  const [listProvinces, setListProvinces] = useState([])
+
   // const { address, setAddress} = useContext(Context)
   let addressAccount = useSelector((state)=>state.address)
   const hideModalHandler = () =>{
@@ -21,32 +29,58 @@ const Modal = (props) => {
         UserName: "",
         Address: "",
         Date: "",
-        FarmerName: ""
+        FarmerName: "",
+        Province: "",
     },
     validationSchema: Yup.object({
       UserName: Yup.string('Require int').required('Required*'),
       Address: Yup.string('Require int').required('Required*'),
       Date: Yup.string('Require int').required('Required*'),
-      FarmerName: Yup.string('Require int').required('Required*')
+      FarmerName: Yup.string('Require int').required('Required*'),
+      Province: Yup.string('Require int').required('Required*')
 
     }),
     onSubmit: async (values)=>{
         console.log(values)
+
+        let fullAddress =values.Address + ', ' + values.Province
+
         getProcessingContract().then((contract)=>{
           contract.methods.addIngress(
                 values.UserName,
                 values.FarmerName,
-                parseInt(values.Date),
-                values.Address
+                values.Date,
+                fullAddress,
+                ""
             ).send({
                 from: addressAccount.address
-              }).then((res)=>{console.log(res);
-            }).then(()=>{setIsShown(false)})
+              }).then((res)=>{
+                console.log(res)
+                dispatch(saveQR(res.blockNumber.toString()))
+
+                res.status&&alert("Add batch success!")
+            }).then(()=>{
+              setIsShown(false)
+
+              setIsShownQR(true)
+
+            })
             .catch((err)=>{console.log(err);})
             
         }).catch((err)=>{console.log(err);})
     }
 })
+
+  useEffect(()=>{
+    axios.get('https://provinces.open-api.vn/api/')
+    .then(res=>{
+      console.log(res)
+
+      setListProvinces(res.data)
+    })
+    .catch(err=>console.log(err))
+
+  },[])
 
   return (
     <div className={styles.backdrop}>
@@ -80,8 +114,24 @@ const Modal = (props) => {
               <p>{formik.errors.Address}</p>
           </div>
           <div className={styles.inputContainer}>
+          <label>Province</label>
+            <select 
+            name="Province"
+            value={formik.values.Province}
+            onChange={formik.handleChange}>
+                <option value="" label="Select a province">
+                  Province
+                </option>
+              {listProvinces.map((province, index)=>{
+                return  <option key={province.code} value={province.name}>
+                          {province.name}
+                        </option>
+              })}
+            </select>
+          </div>
+          <div className={styles.inputContainer}>
             <label htmlFor="Date">Date</label>
-            <input type="text" name="Date" 
+            <input type="date" name="Date" 
             value={formik.values.Date} 
             onChange={formik.handleChange}/>
               <p>{formik.errors.Date}</p>

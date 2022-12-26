@@ -1,0 +1,15 @@
+.wrapper{
+    background-color: #F9FAF5;
+    // position: relative;
+    .title{
+        padding: 2.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .buttonContainer{
+            padding: 0 3rem;
+
+        }
+    }
+}

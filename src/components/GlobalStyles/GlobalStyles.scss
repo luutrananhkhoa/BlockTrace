@@ -1,27 +1,73 @@
 @import 'normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;0,900;1,400&display=swap');
 
 :root{
-    --primary: #F9FAF5;
-    --secondary: #D3F36B;
-    --text-color: #24282C;
+  //UI1
+    // --primary: #F9FAF5;
+    // --secondary: #D3F36B;
+    // --text-color: #24282C;
+    // --violet: #7b62ea;
+    // --completed: #5cb85c;
+    // --pending: #f0ad4e;
+    // --not-available: #d9534f;
+
+    //UI2
+    --primary: #F0F4F9;
+    --secondary: #5B3BB5;
+    --secondary-hover: #5635af;
+    --text-color: #353535;
+    --text-white: #FBFBFB;
+    --button-orange: #FD9434;
+    --button-orange-hover: #eb8a2f;
+    --button-green: #14C1BF;
+    --button-green-hover: #08b7b4;
+    --navy: #33197F;
+    --blue: #5185E5;
+
+    --violet: #7b62ea;
+    --completed: #3cc290;
+    --pending: #f0ad4e;
+    --not-available: #d9534f;
 }
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 html{
     font-size: 62.5%;
 }
 body{
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
     color: var(--text-color)
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 8px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: rgb(165, 165, 165);
+    border-radius: 8px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(123, 123, 123);
+  }
 button, input, [tabindex] {
     outline: none;
     border: none;

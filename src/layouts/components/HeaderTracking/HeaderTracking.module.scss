@@ -1,0 +1,27 @@
+.headerContainer{
+    position: sticky;
+    padding: 2rem 4rem;
+    background-color: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .logo{
+        img{
+            width: 18rem;
+        }
+    }
+    
+
+    .buttonContainer{
+        width: 14rem;
+    }
+
+    .icon{
+        cursor: pointer;
+        .iconHome{
+            color: #fff;
+            font-size: 2rem;
+
+        }
+    }
+}

@@ -4,15 +4,39 @@
     padding: 1.5rem 0;
     border-radius: 6px;
 
-    background-color: var(--text-color);
+    background-color: var(--button-green);
     color: var(--primary);
 
     font-size: 1.5rem;
+    font-weight: 600;
     cursor: pointer;
+
+    span{
+        padding: 0 2rem;
+    }
+    
+    &:hover{
+        background-color: var(--button-green-hover);
+    }
 }
 
 .primary{
-    background-color: var(--secondary);
-    color: var(--text-color);
+    background-color: var(--button-orange);
+    color: var(--text-white);
     font-weight: 600;
+
+    &:hover{
+        background-color: var(--button-orange-hover);
+    }
+}
+
+
+.violet{
+    background-color: var(--secondary);
+    color: var(--text-white);
+    font-weight: 600;
+
+    &:hover{
+        background-color: var(--secondary-hover);
+    }
 }

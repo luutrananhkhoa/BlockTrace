@@ -1,15 +1,14 @@
 .wrapper{
     background-color: #F9FAF5;
-    padding-right: 10rem;
-
+    padding-bottom: 2rem;
     .title{
-        padding: 2.5rem;
+        padding: 2rem 4rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    .content{
+    .input{
         padding: 2.5rem;
 
         input{
@@ -19,6 +18,69 @@
             outline: none;
             color: var(--text-color);
             background-color: var(--secondary);
+        }
+    }
+    .section{
+        display: flex;
+        justify-content: center;
+        padding: 2rem 4rem;
+        .content{
+            width: 50%;
+            padding: 1rem;
+            border: 1px solid #ccc;
+
+            h4{
+                font-size: 2rem;
+            }
+
+            .content_role{
+                display: flex;
+                align-items: center;
+                margin-top: 0.5rem;
+                color: rgb(44, 146, 186);
+               
+                p{
+                    margin-left: 1rem;
+                }
+            }
+
+            .content_time{
+                display: flex;
+                align-items: center;
+                margin-top: 0.5rem;
+                color: rgb(44, 186, 63);
+               
+                p{
+                    margin-left: 1rem;
+                }
+            }
+
+            .content_info{
+                display: flex;
+                align-items: center;
+                margin-top: 0.5rem;
+                border-top: 1px solid #ccc;
+                padding: 1rem 0;
+
+                h6{
+                    margin-right: 2rem;
+                    font-size:1.5rem;
+                    font-weight:bold;
+                }
+
+                p{
+                    // width: 60%;
+                    font-size:1.3rem;
+                    
+                }
+            }
+        }
+
+        .iconCheck{
+            padding: 1.5rem;
+            border-radius: 50%;
+            color: #fff;
+            background-color: var(--completed);
         }
     }
 }

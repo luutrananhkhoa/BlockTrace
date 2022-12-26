@@ -1,16 +1,16 @@
 .wrapper{
-    background-color: #F9FAF5;
-    // position: relative;
+
     .title{
         padding: 2.5rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-    .content{
+
+    .content {
         padding: 2.5rem;
         width: 100%;
-
+        
         table{
             // width: 100%;
             border-collapse: collapse;
@@ -46,18 +46,6 @@
                 color: var(--blue);
                 cursor: pointer;
             }
-            // .userItemHeader{
-            //     display: flex;
-            //     justify-content: space-between;
-            //     padding: 1rem;
-            //     background-color:var(--secondary);
-            //     color: var(--text-white);
-            // }
-            // .userItem{
-            //     display: flex;
-            //     justify-content: space-between;
-            //     padding: 1rem;
-            // }
         }
     }
 }

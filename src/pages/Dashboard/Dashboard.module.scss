@@ -2,20 +2,51 @@
     background-color: #F9FAF5;
     padding-right: 10rem;
     position: relative;
+
+    .title{
+        padding: 2.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .button_Add{
+            padding: 1.2rem 4rem;
+            border-radius: 4px;
+        
+            background-color: #D3F36B;
+            font-size:16px;
+            font-weight: 600;
+            cursor: pointer;
+            &:hover{
+                background-color:var(--violet);
+                color: #fff;
+                transition: all 0.3s ease-in-out;
+            }
+        }
+    }
+
+
+    .overview{
+        padding: 2.5rem;
+        h2{
+            font-size:2rem;
+        }
+        //Css for table
+        table{
+            width: 100%;
+            padding: 1rem;
+            margin-top: 1rem;
+            border:0px;
+            // background-color:#ccc;
+            text-align: left;
+            tr{
+                border-bottom: 1px solid #000;
+                width: fit-content;
+            }
+            th, td{
+                padding: 1rem 2rem;
+                width: fit-content;
+            }
+        }
+    }
 }
 
-.title{
-    padding: 2.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.button_Add{
-    padding: 1.2rem 4rem;
-    border-radius: 4px;
-
-    background-color: #D3F36B;
-    font-size:16px;
-    font-weight: 600;
-    cursor: pointer;
-}
