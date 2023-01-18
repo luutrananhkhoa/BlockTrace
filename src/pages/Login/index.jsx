@@ -1,7 +1,9 @@
 import React from 'react'
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveAddress } from '~/redux/slices/userSlice';
+import { saveInfo } from '~/redux/slices/userInfoSlice';
+import { login } from '~/redux/slices/authSlice';
 import {getContract as getUserContract} from "~/contracts/userContract";
 
 import styles from './Login.module.scss'
@@ -9,6 +11,7 @@ import Button from '~/components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import iconLogo from '~/assets/images/iconBlockTrace.png'
+import Toast from '~/components/Toast/Toast';
 
 const Login = () => {
   const navigate = useNavigate()
@@ -42,14 +45,28 @@ const Login = () => {
         .then((response)=>{
           console.log('response', response)
           
+          let userInfo = {
+            fullName:response.fullName,
+            userCccd:response.userEmail,
+            userEmail:response.userCccd,
+            userId: response.userId,
+            userIsChecked:response.userIsChecked
+          }
+
           let { userId } = response
           console.log('userId', userId)
 
+          dispatch(saveInfo(userInfo))
           localStorage.setItem('userId', userId)
 
           if(response.userIsChecked){
+            // <Toast 
+            // toastType="success"
+            // toastTitle="This is a success message"
+            // />
             navigate('/')
             localStorage.setItem("isLogin", true);
+            dispatch(login(true))
           }else{
             alert('Chưa đăng ký tài khoản')
           }

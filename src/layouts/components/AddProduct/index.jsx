@@ -5,10 +5,11 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup'
 // import { Context } from '~/context/Context';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveQR } from '~/redux/slices/userSlice';
+// import { saveQR } from '~/redux/slices/userSlice';
 import axios from 'axios';
 import { NFTStorage, File } from "nft.storage";
 import { useRef } from 'react';
+import Toast from '~/components/Toast/Toast';
 // import { level1s } from 'dvhcvn'
   
 const AddProduct = (props) => {
@@ -74,13 +75,15 @@ const AddProduct = (props) => {
             Ward: "",
         },
         validationSchema: Yup.object({
-          UserName: Yup.string('Require int').required('Required*'),
-          Address: Yup.string('Require int').required('Required*'),
-          Date: Yup.string('Require int').required('Required*'),
-          IdentityFarmer: Yup.string('Require int').required('Required*'),
-          Province: Yup.string('Require int').required('Required*'),
-          District: Yup.string('Require int').required('Required*'),
-          Ward: Yup.string('Require int').required('Required*'),
+          UserName: Yup.string().required('Required!'),
+          Address: Yup.string().required('Required!'),
+          Date: Yup.string().required('Required!'),
+          IdentityFarmer: Yup.number()
+            .min(10, "Must be 9 characters")
+            .required('Required!'),
+          Province: Yup.string().required('Required!'),
+          District: Yup.string().required('Required!'),
+          Ward: Yup.string().required('Required!'),
         }),
         onSubmit: async (values)=>{
             console.log(values)
@@ -103,12 +106,9 @@ const AddProduct = (props) => {
                     from: addressAccount.address
                 }).then((res)=>{
                     console.log(res)
-                    dispatch(saveQR(res.blockNumber.toString()))
+                    // dispatch(saveQR(res.blockNumber.toString()))
 
-                    res.status&&alert("Add batch success!")
-                    setIsShow(false)
-
-                    setIsShownQR(true)
+                    res.status && <Toast toastType="success" toastTitle="Complete add ingress."/>  
                 })
                 .catch((err)=>{console.log(err);})
                 
@@ -183,19 +183,21 @@ const AddProduct = (props) => {
   return (
     <div className={styles.wrapper}>
         <div className={styles.title}>
-            <h2>Add Product</h2>
+            <h2>Add Ingress</h2>
         </div>
         <div className={styles.form}>
           <div className={styles.inputContainer}>
-            <label htmlFor="UserName">UserName</label>
+            <label htmlFor="UserName">Full Name</label>
             <input type="text" name="UserName" 
+            placeholder='Username'
             value={formik.values.UserName} 
             onChange={formik.handleChange}/>
               <p>{formik.errors.UserName}</p>
           </div>
           <div className={styles.inputContainer}>
-            <label htmlFor="IdentityFarmer">IdentityFarmer</label>
+            <label htmlFor="IdentityFarmer">Farmer's Identity Number</label>
             <input type="text" name="IdentityFarmer" 
+            placeholder='Identification'
             value={formik.values.IdentityFarmer} 
             onChange={formik.handleChange}/>
               <p>{formik.errors.IdentityFarmer}</p>
@@ -203,6 +205,7 @@ const AddProduct = (props) => {
           <div className={styles.inputContainer}>
             <label htmlFor="Address">Address</label>
             <input type="text" name="Address" 
+            placeholder='Address'
             value={formik.values.Address} 
             onChange={formik.handleChange}/>
               <p>{formik.errors.Address}</p>

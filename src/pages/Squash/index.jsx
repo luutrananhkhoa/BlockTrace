@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import { useEffect } from 'react'
 import Button from '~/components/Button'
-import AddRough from '~/layouts/components/AddRough'
-import styles from './Rough.module.scss'
+import Toast from '~/components/Toast/Toast'
+import AddSquash from '~/layouts/components/AddSquash'
+import styles from './Squash.module.scss'
 import QRCode from "react-qr-code";
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {getContractProcessing as getProcessingContract} from "~/contracts/processingContract"
 
-const Rough = () => {
+const Squash = () => {
     const [isShow, setIsShow] = useState(false)
-    // const [isShownQR,setIsShownQR] = useState(false)
     const [listProduct, setListProducts] = useState([])
 
     const navigate = useNavigate()
@@ -17,7 +18,7 @@ const Rough = () => {
 
     useEffect(()=>{
       getProcessingContract().then((contract) =>{
-          contract.methods.getAllRough().call({
+          contract.methods.getAllSquash().call({
             from: address.address
           })
           .then((response)=>{
@@ -26,11 +27,12 @@ const Rough = () => {
           })
           .catch((err)=>{console.log(err);})
         })
-    },[listProduct])
+    },[])
   return (
     <div className={styles.wrapper}>
+
         <div className={styles.title}>
-            <h1>Rough</h1>
+            <h1>Squash</h1>
             <div className={styles.buttonContainer}>
                 {isShow?
                 <Button
@@ -38,18 +40,18 @@ const Rough = () => {
                 :
                 <Button
                 primary
-                onClick={()=>setIsShow(true)}>Add rough</Button>
+                onClick={()=>setIsShow(true)}>Add squash</Button>
                 }
                 
             </div>
         </div>
         {isShow?
-            <AddRough setIsShow={setIsShow} 
+            <AddSquash setIsShow={setIsShow} 
             // setIsShownQR={setIsShownQR}
             />
-        :
-        <div className={styles.content}>
-            <table className={styles.table}>
+            :
+            <div className={styles.content}>
+              <table className={styles.table}>
                 <thead>
                     <tr className={styles.userItemHeader}>
                         <th className={styles.userName}>
@@ -89,10 +91,10 @@ const Rough = () => {
                             </td>
 
                             <td className={styles.userCategory}>
-                                <p>{user.warehouseAdress}</p>
+                                <p>{user.warehouseAddress}</p>
                             </td>
                             <td className={styles.userCategory}>
-                                <p>{user.roughDate}</p>
+                                <p>{user.squashDate}</p>
                             </td>
                         </tr>
                     ) 
@@ -104,4 +106,4 @@ const Rough = () => {
   )
 }
 
-export default Rough
+export default Squash

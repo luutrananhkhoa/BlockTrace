@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup'
 // import { Context } from '~/context/Context';
 import { useDispatch, useSelector } from 'react-redux';
-import { saveQR } from '~/redux/slices/userSlice';
+// import { saveQR } from '~/redux/slices/userSlice';
 import axios from 'axios';
 
 import emailjs from '@emailjs/browser';
@@ -56,7 +56,7 @@ const Modal = (props) => {
                 from: addressAccount.address
               }).then((res)=>{
                 console.log(res)
-                dispatch(saveQR(res.blockNumber.toString()))
+                // dispatch(saveQR(res.blockNumber.toString()))
 
                 res.status&&alert("Add batch success!")
             }).then(()=>{

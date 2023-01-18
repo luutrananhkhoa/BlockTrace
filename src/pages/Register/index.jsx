@@ -34,9 +34,13 @@ const Register = () => {
     validationSchema:Yup.object({
       // address: Yup.string('Require string').required('Required*'),
       username: Yup.string('Require string').required('Required*'),
-      userrole: Yup.string('Require string').required('Required*'),
-      email: Yup.string('Require string').required('Required*'),
-      identification: Yup.string('Require string').required('Required*'),
+      userrole: Yup.string('').required('Required!'),
+      email: Yup.string()
+        .email("Invalid email format")
+        .required("Required!"),
+      identification: Yup.number()
+        .min(10, "Must be 9 characters")
+        .required("Requried!")
     }),
     onSubmit: async (values)=>{
       console.log(values)
@@ -123,7 +127,8 @@ const Register = () => {
                 <div className={styles.container}>
                   <input 
                       type="text"
-                      name="username" 
+                      name="address" 
+                      placeholder='Address'
                       value={address.address?address.address:""}
                       disabled
                     />  
@@ -139,6 +144,7 @@ const Register = () => {
                 <input 
                   type="text"
                   name="username" 
+                  placeholder='Full Name'
                   value={formik.values.username}
                   onChange={formik.handleChange}/>  
                 <p>{formik.errors.username}</p>
@@ -146,8 +152,9 @@ const Register = () => {
               <div className={styles.inputContainer}>
                 <label>Email</label>
                 <input 
-                  type="text"
+                  type="email2"
                   name="email" 
+                  placeholder='Email'
                   value={formik.values.email}
                   onChange={formik.handleChange}/>  
                 <p>{formik.errors.email}</p>
@@ -157,6 +164,7 @@ const Register = () => {
                 <input 
                   type="text"
                   name="identification" 
+                  placeholder='Identification'
                   value={formik.values.identification}
                   onChange={formik.handleChange}/>  
                 <p>{formik.errors.identification}</p>

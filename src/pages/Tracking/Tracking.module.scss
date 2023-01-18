@@ -26,10 +26,12 @@
         padding: 2rem 4rem;
         .content{
             width: 50%;
-            padding: 1rem;
-            border: 1px solid #ccc;
+            padding: 2rem;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 40px 0px;
+            // border: 1px solid #ccc;
 
             h4{
+                text-align: center;
                 font-size: 2rem;
             }
 
@@ -38,9 +40,10 @@
                 align-items: center;
                 margin-top: 0.5rem;
                 color: rgb(44, 146, 186);
-               
+                
                 p{
-                    margin-left: 1rem;
+                    margin-left: 1rem;  
+
                 }
             }
 
@@ -68,10 +71,12 @@
                     font-weight:bold;
                 }
 
-                p{
+                p, a{
                     // width: 60%;
                     font-size:1.3rem;
-                    
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
             }
         }

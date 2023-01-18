@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from '~/components/Button'
-import AddRough from '~/layouts/components/AddRough'
-import styles from './Rough.module.scss'
+import styles from './Dry.module.scss'
+import AddDry from '~/layouts/components/AddDry'
 import QRCode from "react-qr-code";
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {getContractProcessing as getProcessingContract} from "~/contracts/processingContract"
 
-const Rough = () => {
+const Dry = () => {
     const [isShow, setIsShow] = useState(false)
-    // const [isShownQR,setIsShownQR] = useState(false)
     const [listProduct, setListProducts] = useState([])
 
     const navigate = useNavigate()
@@ -17,7 +16,7 @@ const Rough = () => {
 
     useEffect(()=>{
       getProcessingContract().then((contract) =>{
-          contract.methods.getAllRough().call({
+          contract.methods.getAllDry().call({
             from: address.address
           })
           .then((response)=>{
@@ -26,11 +25,11 @@ const Rough = () => {
           })
           .catch((err)=>{console.log(err);})
         })
-    },[listProduct])
+    },[])
   return (
     <div className={styles.wrapper}>
         <div className={styles.title}>
-            <h1>Rough</h1>
+            <h1>Dry</h1>
             <div className={styles.buttonContainer}>
                 {isShow?
                 <Button
@@ -38,18 +37,18 @@ const Rough = () => {
                 :
                 <Button
                 primary
-                onClick={()=>setIsShow(true)}>Add rough</Button>
+                onClick={()=>setIsShow(true)}>Add dry</Button>
                 }
                 
             </div>
         </div>
         {isShow?
-            <AddRough setIsShow={setIsShow} 
+            <AddDry setIsShow={setIsShow} 
             // setIsShownQR={setIsShownQR}
             />
-        :
-        <div className={styles.content}>
-            <table className={styles.table}>
+            :
+            <div className={styles.content}>
+              <table className={styles.table}>
                 <thead>
                     <tr className={styles.userItemHeader}>
                         <th className={styles.userName}>
@@ -89,10 +88,10 @@ const Rough = () => {
                             </td>
 
                             <td className={styles.userCategory}>
-                                <p>{user.warehouseAdress}</p>
+                                <p>{user.warehouseAddress}</p>
                             </td>
                             <td className={styles.userCategory}>
-                                <p>{user.roughDate}</p>
+                                <p>{user.dryDate}</p>
                             </td>
                         </tr>
                     ) 
@@ -104,4 +103,4 @@ const Rough = () => {
   )
 }
 
-export default Rough
+export default Dry

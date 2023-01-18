@@ -14,7 +14,7 @@ const Products = () => {
 
     const [listProduct, setListProducts] = useState([])
     const [isShow, setIsShow] = useState(false)
-    const [isShownQR,setIsShownQR] = useState(false)
+    // const [isShownQR,setIsShownQR] = useState(false)
 
 
     useEffect(()=>{
@@ -32,7 +32,7 @@ const Products = () => {
 
   return (
     <div className={styles.wrapper}>
-        {isShownQR && <QR setIsShownQR={setIsShownQR}/>}
+        {/* {isShownQR && <QR setIsShownQR={setIsShownQR}/>} */}
         <div className={styles.title}>
             <h1>Ingress</h1>
             <div className={styles.buttonContainer}>
@@ -48,7 +48,7 @@ const Products = () => {
             </div>
         </div>
         {isShow?
-            <AddProduct setIsShow={setIsShow} setIsShownQR={setIsShownQR}/>
+            <AddProduct setIsShow={setIsShow}/>
             :   
             <div className={styles.content}>
                 <table className={styles.table}>

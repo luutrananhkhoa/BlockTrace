@@ -5,11 +5,12 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup'
 import {getContractProcessing as getProcessingContract} from "~/contracts/processingContract"
 import axios from 'axios';
+import Button from '~/components/Button';
 
-const AddWarehouse = () => {
+const AddWarehouse = (props) => {
 
     let addressAccount = useSelector((state)=>state.address)
-
+    const {setIsShow} = props
     const [listProvinces, setListProvinces] = useState([])
     const [listDistricts, setListDistricts] = useState([])
     const [listWards, setListWards] = useState([])
@@ -47,12 +48,14 @@ const AddWarehouse = () => {
     }
     const formik = useFormik({
         initialValues:{
+            warehouseName: "",
             warehouseAddress: "",
             Province: "",
             District: "",
             Ward: "",
         },
         validationSchema: Yup.object({
+            warehouseName: Yup.string('Require int').required('Required*'),
             warehouseAddress: Yup.string('Require int').required('Required*'),
             Province: Yup.string('Require int').required('Required*'),
             District: Yup.string('Require int').required('Required*'),
@@ -62,13 +65,13 @@ const AddWarehouse = () => {
             console.log(values)
             let fullAddress =values.warehouseAddress + ', ' + values.Ward +', ' + values.District +', '+ values.Province
             getProcessingContract().then((contract)=>{
-                contract.methods.addWarehouse(values.warehouseAddress)
+                contract.methods.addWarehouse(values.warehouseName, fullAddress)
                 .send({
                         from: addressAccount.address
                     }).then((res)=>{
                         console.log(res)
 
-                        res.status&&alert("Add warehouse success!")
+                        res.status &&setIsShow(false)
                     }).catch((err)=>{console.log(err);})
 
                 }).catch((err)=>{console.log(err);})
@@ -83,6 +86,7 @@ const AddWarehouse = () => {
         })
         .catch(err=>console.log(err))
 
+       
     },[])
   return (
     <div className={styles.wrapper}>
@@ -90,32 +94,41 @@ const AddWarehouse = () => {
             <h2>Add Warehouse</h2>
         </div>
         <div className={styles.form}>
+        <div className={styles.inputContainer}>
+                <label htmlFor="warehouseName">Warehouse Name</label>
+                <input type="text" name="warehouseName" 
+                placeholder='Name'
+                value={formik.values.warehouseName} 
+                onChange={formik.handleChange}/>
+                <p>{formik.errors.warehouseName}</p>
+            </div>
             <div className={styles.inputContainer}>
-                <label htmlFor="UserName">Warehouse Address</label>
+                <label htmlFor="warehouseAddress">Warehouse Address</label>
                 <input type="text" name="warehouseAddress" 
+                placeholder='Address'
                 value={formik.values.warehouseAddress} 
                 onChange={formik.handleChange}/>
                 <p>{formik.errors.warehouseAddress}</p>
             </div>
             <div className={styles.inputContainer}>
-          <label>Province</label>
-            <select 
-            name="Province"
-            value={formik.values.Province}
-            onChange={e=>{
-              formik.handleChange(e)
-              // console.log('dsa',e.target.value)
-              const selectedProvince = listProvinces.find(
-                (entry) => entry.province_name === e.target.value
-              );
-              // console.log('111',selectedProvince)
-              provinceId =selectedProvince.province_id
-              handleProvinceSelector()
-            }}
-            >
-                <option value="" label="Select a province">
-                  Province
-                </option>
+              <label>Province</label>
+                  <select 
+                  name="Province"
+                  value={formik.values.Province}
+                  onChange={e=>{
+                    formik.handleChange(e)
+                    // console.log('dsa',e.target.value)
+                    const selectedProvince = listProvinces.find(
+                      (entry) => entry.province_name === e.target.value
+                    );
+                    // console.log('111',selectedProvince)
+                    provinceId =selectedProvince.province_id
+                    handleProvinceSelector()
+                  }}
+                  >
+                  <option value="" label="Select a province">
+                    Province
+                  </option>
               {listProvinces.map((province, index)=>{
                 return  <option key={province.province_id} value={province.province_name} onChange={()=>{console.log(province.province_id)}}>
                           {province.province_name}
@@ -167,10 +180,10 @@ const AddWarehouse = () => {
         </div>
         
         <div className={styles.buttonContainer}>
-          <button 
-            className={styles.button_Ok}
-            type="submit" onClick={formik.handleSubmit}
-          >OK</button>
+          <Button 
+             onClick={formik.handleSubmit}
+            primary
+          >OK</Button>
         </div>
     </div>
   )

@@ -18,6 +18,21 @@ export const ABI =[
 				"internalType": "address",
 				"name": "roughDatabaseContractAddress",
 				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "squashDatabaseContractAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "dryDatabaseContractAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "packageDatabaseContractAddress",
+				"type": "address"
 			}
 		],
 		"stateMutability": "nonpayable",
@@ -41,6 +56,44 @@ export const ABI =[
 		],
 		"name": "OwnershipTransferred",
 		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "batchId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "userName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "dryDate",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "warehouseAddress",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "processPhoto",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "keyValue",
+				"type": "uint256"
+			}
+		],
+		"name": "addDry",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"inputs": [
@@ -94,12 +147,50 @@ export const ABI =[
 			},
 			{
 				"internalType": "string",
+				"name": "packageDate",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "warehouseAddress",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "processPhoto",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "keyValue",
+				"type": "uint256"
+			}
+		],
+		"name": "addPackage",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "batchId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "userName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
 				"name": "roughDate",
 				"type": "string"
 			},
 			{
 				"internalType": "string",
-				"name": "roughAddress",
+				"name": "warehouseAddress",
 				"type": "string"
 			},
 			{
@@ -121,6 +212,49 @@ export const ABI =[
 	{
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "batchId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "userName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "squashDate",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "warehouseAddress",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "processPhoto",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "keyValue",
+				"type": "uint256"
+			}
+		],
+		"name": "addSquash",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "warehouseName",
+				"type": "string"
+			},
+			{
 				"internalType": "string",
 				"name": "warehouseAddress",
 				"type": "string"
@@ -136,6 +270,74 @@ export const ABI =[
 		"name": "destroy",
 		"outputs": [],
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "dryDatabase",
+		"outputs": [
+			{
+				"internalType": "contract DryDatabase",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getAllDry",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "batchId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "userName",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "userAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "dryDate",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "warehouseAddress",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "processPhoto",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "keyValue",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "dryIsChecked",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct Dry[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -200,6 +402,61 @@ export const ABI =[
 	},
 	{
 		"inputs": [],
+		"name": "getAllPackage",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "batchId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "userName",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "userAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "packageDate",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "warehouseAddress",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "processPhoto",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "keyValue",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "packageIsChecked",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct Package[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "getAllRough",
 		"outputs": [
 			{
@@ -226,7 +483,7 @@ export const ABI =[
 					},
 					{
 						"internalType": "string",
-						"name": "roughAdress",
+						"name": "warehouseAdress",
 						"type": "string"
 					},
 					{
@@ -255,6 +512,61 @@ export const ABI =[
 	},
 	{
 		"inputs": [],
+		"name": "getAllSquash",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "batchId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "userName",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "userAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "squashDate",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "warehouseAddress",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "processPhoto",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "keyValue",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "squashIsChecked",
+						"type": "bool"
+					}
+				],
+				"internalType": "struct Squash[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "getAllWarehouse",
 		"outputs": [
 			{
@@ -266,7 +578,12 @@ export const ABI =[
 					},
 					{
 						"internalType": "string",
-						"name": "warehoustAddress",
+						"name": "warehouseName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "warehouseAddress",
 						"type": "string"
 					},
 					{
@@ -311,10 +628,36 @@ export const ABI =[
 	},
 	{
 		"inputs": [],
+		"name": "packageDatabase",
+		"outputs": [
+			{
+				"internalType": "contract PackageDatabase",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "roughDatabase",
 		"outputs": [
 			{
 				"internalType": "contract RoughDatabase",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "squashDatabase",
+		"outputs": [
+			{
+				"internalType": "contract SquashDatabase",
 				"name": "",
 				"type": "address"
 			}
@@ -349,7 +692,7 @@ export const ABI =[
 		"type": "function"
 	}
 ]
-export const ADDRESS = "0x4Da998B14673b138d3B2F71fDDF7B3b94804C137";
+export const ADDRESS = "0xF6c338D0E7ab1A9Ac2FbcA1614951Ba3D3f2a1a1";
 
 export async function getContractProcessing() {
   const provider = await detectEthereumProvider();

@@ -68,13 +68,22 @@ const AddFarmer = () => {
             Ward: "",
         },
         validationSchema: Yup.object({
-            farmerCccd: Yup.string('Require int').required('Required*'),
-            farmerName: Yup.string('Require int').required('Required*'),
-            farmerEmail: Yup.string('Require int').required('Required*'),
-            farmerAddress: Yup.string('Require int').required('Required*'),
-            Province: Yup.string('Require int').required('Required*'),
-            District: Yup.string('Require int').required('Required*'),
-            Ward: Yup.string('Require int').required('Required*'),
+            farmerCccd: Yup.number()
+              .min(10, "Must be 9 characters")
+              .required('Required!'),
+            farmerName: Yup.string()
+              .required('Required!'),
+            farmerEmail: Yup.string()
+              .email("Invalid email format")
+              .required("Required!"),
+            farmerAddress: Yup.string()
+              .required('Required!'),
+            Province: Yup.string()
+              .required('Required!'),
+            District: Yup.string()
+              .required('Required!'),
+            Ward: Yup.string()
+              .required('Required!'),
         }),
         onSubmit: async (values)=>{
             console.log(values)
@@ -99,22 +108,25 @@ const AddFarmer = () => {
         </div>
         <div className={styles.form}>
             <div className={styles.inputContainer}>
-                <label htmlFor="farmerName">farmerName</label>
+                <label htmlFor="farmerName">Full Name</label>
                 <input type="text" name="farmerName" 
+                placeholder='Full Name'
                 value={formik.values.farmerName} 
                 onChange={formik.handleChange}/>
                 <p>{formik.errors.farmerName}</p>
             </div>
             <div className={styles.inputContainer}>
-                <label htmlFor="farmerCccd">farmerCccd</label>
+                <label htmlFor="farmerCccd">Identity Number</label>
                 <input type="text" name="farmerCccd" 
+                placeholder='Identication'
                 value={formik.values.farmerCccd} 
                 onChange={formik.handleChange}/>
                 <p>{formik.errors.farmerCccd}</p>
             </div>
             <div className={styles.inputContainer}>
-                <label htmlFor="farmerEmail">farmerEmail</label>
+                <label htmlFor="farmerEmail">Email</label>
                 <input type="text" name="farmerEmail" 
+                placeholder='Email'
                 value={formik.values.farmerEmail} 
                 onChange={formik.handleChange}/>
                 <p>{formik.errors.farmerEmail}</p>
@@ -122,6 +134,7 @@ const AddFarmer = () => {
             <div className={styles.inputContainer}>
                 <label htmlFor="farmerAddress">Address</label>
                 <input type="text" name="farmerAddress" 
+                placeholder='Address'
                 value={formik.values.farmerAddress} 
                 onChange={formik.handleChange}/>
                 <p>{formik.errors.farmerAddress}</p>

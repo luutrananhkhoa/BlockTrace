@@ -7,7 +7,9 @@ import { saveAddress } from '~/redux/slices/userSlice';
 import {getContractProcessing as getProcessingContract} from "~/contracts/processingContract";
 import Badge from '~/components/Badge';
 import QR from '~/components/QR';
-
+import { faCheck, faClockFour, faCircleXmark } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Toast from '~/components/Toast/Toast';
 const Dashboard = () => {
   // const { address, setAddress} = useContext(Context)
   const [isShown,setIsShown] = useState(false)
@@ -18,6 +20,10 @@ const Dashboard = () => {
 
   return (
     <div className={styles.wrapper}>
+      <Toast 
+        toastType="success"
+        toastTitle="This is a success message"
+        />
       {isShown && <Modal setIsShownQR={setIsShownQR} setIsShown={setIsShown}/>}
       {isShownQR && <QR setIsShownQR={setIsShownQR}/>}
         <div className={styles.title}>
@@ -25,6 +31,29 @@ const Dashboard = () => {
           {/* <button 
             className={styles.button_Add}
             onClick = {()=>setIsShown(true)}>+ Add</button> */}
+        </div>
+        <div className={styles.cardContainer}>
+            <div className={styles.cardItem}>
+              <FontAwesomeIcon className={styles.cardIcon} icon={faCheck}/>
+              <div className={styles.cardInfo}>
+                <p>3</p>
+                <h6>Complete</h6>
+              </div>
+            </div>
+            <div className={styles.cardItem}>
+              <FontAwesomeIcon className={styles.cardIcon} icon={faClockFour}/>
+              <div className={styles.cardInfo}>
+                <p>4</p>
+                <h6>Pending</h6>
+              </div>
+            </div>
+            <div className={styles.cardItem}>
+              <FontAwesomeIcon className={styles.cardIcon} icon={faCircleXmark}/>
+              <div className={styles.cardInfo}>
+                <p>2</p>
+                <h6>Not Available</h6>
+              </div>
+            </div>
         </div>
         <div className={styles.overview}>
           <h2>Overview</h2>

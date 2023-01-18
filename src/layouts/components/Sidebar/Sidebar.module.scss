@@ -6,6 +6,7 @@
     background-color: var(--secondary);
     color: var(--text-white);
     border-right: 2px solid #F4F5F0;
+    transition: 1s ease;
     // position: fixed;
     .logoContainer{
         padding: 1rem 2rem;
@@ -21,6 +22,12 @@
         flex-direction: column;
         align-items: center;
         
+        .IconSidebar{
+            padding: 1.5rem;
+            background-color: #7f5edc;
+            border-radius: 8px;
+            cursor: pointer;
+        }
         .menuList{
             margin-top: 4rem;
             width: 100%;
@@ -86,4 +93,9 @@
         }
 
     }
+}
+
+.wrapperSmall{
+    width: 72px;
+    transition: 1s ease;
 }
