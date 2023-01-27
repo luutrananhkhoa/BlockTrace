@@ -2,6 +2,7 @@ import Dashboard from '~/pages/Dashboard';
 import Dry from '~/pages/Dry';
 import Farmer from '~/pages/Farmer';
 import Login from '~/pages/Login';
+import NotFound from '~/pages/NotFound';
 import Package from '~/pages/Package';
 import Products from '~/pages/Products';
 import Register from '~/pages/Register';
@@ -16,6 +17,7 @@ const publicRoutes = [
     { path: '/', component: Dashboard},
     { path: '/login', component: Login, layout: null},
     { path: '/register', component: Register, layout: null},
+    { path: '/404', component: NotFound, layout: null},
 ]
 
 //Private routes

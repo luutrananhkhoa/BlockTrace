@@ -1,0 +1,29 @@
+.wrapper{
+    background-color: #F9FAF5;
+    .section{
+        min-height:70vh;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .content{
+            display: flex;
+            justify-content:center;
+            flex-direction: column;
+            align-items:center;
+            width: 60%;
+            padding: 1rem 4rem;
+
+            h1{
+                font-size: 20rem;
+                color: var(--navy);
+            }
+
+            p{
+                margin: 2rem;
+                font-size:3rem;
+                font-weight: 500;
+            }
+        }
+    }
+}

@@ -7,8 +7,8 @@ import AuthMiddleware from '~/layouts/Middlewares/AuthMiddleware/AuthMiddleware'
 
 function App() {
   const auth = useSelector((state) => state.auth)
-  console.log('auth', auth)
-  let isNavigated = <Navigate to="/" replace />
+  // console.log('auth', auth)
+  // let isNavigated = <Navigate to="/" replace />
   return (
     <Router>
       <div className="App">
@@ -36,10 +36,6 @@ function App() {
         <Routes>
           <Route path="" element={<AuthMiddleware requestAuth></AuthMiddleware>}>
             {privateRoutes.map((route, index)=>{
-
-                // if(auth){
-                //   return isNavigated
-                // }
                 const Page = route.component;
                 let Layout = DefaultLayout;
 

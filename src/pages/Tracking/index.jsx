@@ -126,10 +126,6 @@ const Tracking = () => {
             <h1>Tracking</h1>
             <Button onClick={generatePdf}>Print</Button>
         </div>
-        {/* <div className={styles.input}>
-            <input type="text" placeholder="Id..."/>
-        </div> */}
-        
         <div id="contentPDF" className={styles.section}>
         {listProduct.map((item, index) =>{
             return ( item.batchId === productId
@@ -166,38 +162,8 @@ const Tracking = () => {
                   </div>
                 </div>
                </>
-              
-            ) 
-            
-        })}
-          
-          {/* <div className={styles.content}>
-            <h4>Ingress</h4>
-            <div className={styles.content_role}>
-              <FontAwesomeIcon className={styles.Icon} icon={faUser} />
-              <p>Admin</p>
-            </div>
-            <div className={styles.content_time}>
-              <FontAwesomeIcon className={styles.Icon} icon={faClock} />
-              <p>16/12/2022 17:22:04</p>
-            </div>
-            <div className={styles.content_info}>
-              <h6>Full Name: </h6>
-              <p>Luu Tran Anh Khoa</p>
-            </div>
-            <div className={styles.content_info}>
-              <h6>Farmer Name: </h6>
-              <p>Phan Pham Quynh Hoa</p>
-            </div>
-            <div className={styles.content_info}>
-              <h6>Address: </h6>
-              <p>HCM</p>
-            </div>
-            <div className={styles.content_info}>
-              <h6>Contract: </h6>
-              <p>https://cloudflare-ipfs.com/ipfs/Logo.png</p>
-            </div>
-          </div> */}
+              ) 
+          })}
         </div>
       
         <div className={styles.section}>

@@ -1,6 +1,5 @@
 import { faBars, faUser, faRightFromBracket, faBoxOpen, faTrainSubway, faTractor,
          faWarehouse, faBarcode, faBox, faBoxesPacking, faHandsWash, faSmog, faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons'
-// import {  } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -13,32 +12,9 @@ const Sidebar = () => {
   const [isOpenSidebar, setIsOpenSidebar] = useState(false)
   let userInfo = useSelector((state)=>state.userInfo)
 
-  // let mini = true;
   const toggleSidebar =()=>{
-    // setIsOpenSidebar(!isOpenSidebar)
     isOpenSidebar === true? setIsOpenSidebar(false): setIsOpenSidebar(true)
-
-    // if (isOpenSidebar) {
-    //   document.getElementById("mySidebar").style.width = "280px";
-    //   // mini = false; 
-    // } else {
-    //   document.getElementById("mySidebar").style.width = "72px";
-    //   // mini = true;
-    // }
   }
-  // const [sidebarHide, setSideBarHide] = useState(false);
-
-  // const handleViewSidebar = () => {
-  //   setSideBarHide(!sidebarHide);
-  //   console.log('1')
-  // };
-  // useEffect(()=>{
-  //   // let check = localStorage.getItem('userId')
-
-  //   console.log('userInfo', userInfo)
-
-  // },[])
-
   const classes = clsx(styles.wrapper, {
     [styles.wrapperSmall]: isOpenSidebar
   })
