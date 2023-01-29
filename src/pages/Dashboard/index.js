@@ -16,7 +16,7 @@ const Dashboard = () => {
   const [isShownQR,setIsShownQR] = useState(false)
 
   const addressRedux = useSelector((state) => state.address)
-  console.log('dsadsa',addressRedux);
+  const fullName = useSelector((state) => state.userInfo.fullName)
 
   return (
     <div className={styles.wrapper}>
@@ -28,6 +28,7 @@ const Dashboard = () => {
       {isShownQR && <QR setIsShownQR={setIsShownQR}/>}
         <div className={styles.title}>
           <h1>Dashboard</h1>
+          <h6>Welcome, {fullName}!</h6>
           {/* <button 
             className={styles.button_Add}
             onClick = {()=>setIsShown(true)}>+ Add</button> */}

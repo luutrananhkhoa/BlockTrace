@@ -5,9 +5,14 @@
 
     .title{
         padding: 1rem 2.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        // display: flex;
+        // justify-content: space-between;
+        // align-items: center;
+        h6{
+            font-size:2rem;
+            font-weight: normal;
+            color: rgb(139, 139, 139);
+        }
         .button_Add{
             padding: 1.2rem 4rem;
             border-radius: 4px;

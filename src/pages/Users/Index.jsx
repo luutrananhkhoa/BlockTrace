@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Users.module.scss'
-import { useDispatch, useSelector } from 'react-redux';
-import { saveAddress } from '~/redux/slices/userSlice';
-import {getContract as getUserContract} from "~/contracts/userContract";
+import { useSelector } from 'react-redux'
+import {getContract as getUserContract} from "~/contracts/userContract"
 
 const Users = () => {
     let address = useSelector((state)=>state.address)
@@ -28,36 +27,39 @@ const Users = () => {
             <h1>Users</h1>
         </div>
         <div className={styles.content}>
-            <div className={styles.table}>
-                <div className={styles.userItemHeader}>
-                    <div className={styles.userName}>
-                        <h3>User Name</h3>
-                    </div>
-                    <div className={styles.userAddress}>
-                        <h3>Address</h3>
-                    </div>
-                    <div className={styles.userCategory}>
-                        <h3>Category</h3>
-                    </div>
-                </div>
+            <table className={styles.table}>
+                <thead>
+                    <tr className={styles.userItemHeader}>
+                        <th className={styles.userName}>
+                            <h3>User Name</h3>
+                        </th>
+                        <th className={styles.userName}>
+                            <h3>Metamask Wallet Address</h3>
+                        </th>
+                        <th className={styles.userAddress}>
+                            <h3>Role</h3>
+                        </th>
+                    </tr>
+                </thead>
+                
+                <tbody>
                 { listUsers.map((user,index)=>{
                     return(
-                        <div key={index} className={styles.userItem}>
-                            <div className={styles.userName}>
+                        <tr key={index}className={styles.userItem}>
+                            <td className={styles.userName}>
                                 <p>{user.fullName}</p>
-                            </div>
-                            <div className={styles.userAddress}>
+                            </td>
+                            <td className={styles.userName}>
                                 <p>{user.userAddress}</p>
-                            </div>
-                            <div className={styles.userCategory}>
+                            </td>
+                            <td className={styles.userAddress}>
                                 <p>{user.userCategory}</p>
-                            </div>
-                        </div>
+                            </td>
+                        </tr>
                     ) 
-                        
                 })}
-               
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
   )

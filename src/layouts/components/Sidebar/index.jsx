@@ -1,14 +1,17 @@
-import { faBars, faUser, faRightFromBracket, faBoxOpen, faTrainSubway, faTractor,
-         faWarehouse, faBarcode, faBox, faBoxesPacking, faHandsWash, faSmog, faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons'
+import { faBars, faUser, faRightFromBracket, faBoxOpen, faTractor,
+         faWarehouse, faBox, faBoxesPacking, faHandsWash, faSmog, faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import styles from './Sidebar.module.scss'
 import logo from '~/assets/images/Logo.png'
 import clsx from 'clsx';
 
 const Sidebar = () => {
+  
+  // const location = useLocation();
+
   const [isOpenSidebar, setIsOpenSidebar] = useState(false)
   let userInfo = useSelector((state)=>state.userInfo)
 

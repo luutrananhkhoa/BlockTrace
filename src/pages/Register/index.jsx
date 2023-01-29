@@ -11,6 +11,7 @@ import emailjs from '@emailjs/browser';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHouse, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import iconLogo from '~/assets/images/iconBlockTrace.png'
+import Package from './../Package/index';
 
 const Register = () => {
   let address = useSelector((state)=>state.address)
@@ -195,6 +196,15 @@ const Register = () => {
                     </option>
                     <option value="2" label="Rough">
                       Rough
+                    </option>
+                    <option value="3" label="Squash">
+                      Squash
+                    </option>
+                    <option value="4" label="Dry">
+                      Dry
+                    </option>
+                    <option value="5" label="Package">
+                      Package
                     </option>
                   </select>
                   <p>{formik.errors.userrole}</p>
