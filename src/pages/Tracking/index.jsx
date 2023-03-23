@@ -124,7 +124,7 @@ const Tracking = () => {
       <HeaderTracking />
         <div className={styles.title}>
             <h1>Tracking</h1>
-            <Button onClick={generatePdf}>Print</Button>
+            {/* <Button onClick={generatePdf}>Print</Button> */}
         </div>
         <div id="contentPDF" className={styles.section}>
         {listProduct.map((item, index) =>{
@@ -191,7 +191,7 @@ const Tracking = () => {
                  </div>
                  <div className={styles.content_info}>
                    <h6>Address: </h6>
-                   <p>{item.warehouseAddress}</p>
+                   <p>{item.warehouseAdress}</p>
                  </div>
                  <div className={styles.content_info}>
                    <h6>Contract: </h6>

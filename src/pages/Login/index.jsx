@@ -49,7 +49,7 @@ const Login = () => {
             fullName:response.fullName,
             userCccd:response.userEmail,
             userEmail:response.userCccd,
-            userId: response.userId,
+            userCategory: response.userCategory,
             userIsChecked:response.userIsChecked
           }
 
@@ -103,11 +103,11 @@ const Login = () => {
             <p>Hi there, welcome back to BlockTrace!</p>
             {!address.address && 
               <div className={styles.button_container}> 
-                <Button violet onClick={onHandleConnect}>Connect to Metamask</Button>
+                <Button primary onClick={onHandleConnect}>Connect to Metamask</Button>
               </div>
             }
             <div className={`${styles.button_container } ${styles.button_second}`}> 
-              <Button primary onClick={onHandleLogin}>Sign in</Button>
+              <Button onClick={onHandleLogin}>Sign in</Button>
             </div>
 
             <div className={styles.signUpContainer}>

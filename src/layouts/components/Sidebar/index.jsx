@@ -1,10 +1,10 @@
 import { faBars, faUser, faRightFromBracket, faBoxOpen, faTractor,
-         faWarehouse, faBox, faBoxesPacking, faHandsWash, faSmog, faArrowLeft, faArrowRight} from '@fortawesome/free-solid-svg-icons'
+         faWarehouse, faBox, faBoxesPacking, faHandsWash, faSmog, faUserAlt} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { Link, NavLink, useLocation } from 'react-router-dom'
-import styles from './Sidebar.module.scss'
+import { Link, NavLink } from 'react-router-dom'
+import './Sidebar.css'
 import logo from '~/assets/images/Logo.png'
 import clsx from 'clsx';
 
@@ -18,110 +18,133 @@ const Sidebar = () => {
   const toggleSidebar =()=>{
     isOpenSidebar === true? setIsOpenSidebar(false): setIsOpenSidebar(true)
   }
-  const classes = clsx(styles.wrapper, {
-    [styles.wrapperSmall]: isOpenSidebar
+  const classes = clsx("wrapper", {
+    "wrapperSmall": isOpenSidebar
   })
 
   return (
     <div className={classes}>
-      <div className={styles.sidebar}>
-        <div className={styles.logoContainer}>
+      <div className="sidebar">
+        <div className="logoContainer">
           <img src={logo} alt="" />
         </div>
-        {!isOpenSidebar?
-         <FontAwesomeIcon onClick={toggleSidebar} className={styles.IconSidebar} icon={faArrowLeft} />
+        {/* {!isOpenSidebar?
+         <FontAwesomeIcon onClick={toggleSidebar} className="IconSidebar" icon={faArrowLeft} />
         :
-        <FontAwesomeIcon onClick={toggleSidebar} className={styles.IconSidebar} icon={faArrowRight} />}
-       
+        <FontAwesomeIcon onClick={toggleSidebar} className="IconSidebar" icon={faArrowRight} />} */}
 
-        {userInfo.userId=='0' &&
-          <div className={styles.menuList}>
-            <NavLink to='/' className={styles.menuItem}>
-              <FontAwesomeIcon className={styles.menuIcon} icon={faBars} />
+        {userInfo.userCategory==='0' &&
+          <div className="menuList">
+            <NavLink to='/' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faBars} />
               <p>Dashboard</p>
             </NavLink>
-            <NavLink to='/user' className={styles.menuItem}>
-              <FontAwesomeIcon className={styles.menuIcon} icon={faUser} />
+            <NavLink to='/user' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faUser} />
               <p>User</p>
             </NavLink>
-            <NavLink to='/farmer' className={styles.menuItem}>
-              <FontAwesomeIcon className={styles.menuIcon} icon={faTractor} />
+            <NavLink to='/product' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faWarehouse} />
+              <p>Product</p>
+            </NavLink>
+            <NavLink to='/farmer' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faTractor} />
               <p>Farmer</p>
             </NavLink>
-            <NavLink to='/warehouse' className={styles.menuItem}>
-              <FontAwesomeIcon className={styles.menuIcon} icon={faWarehouse} />
+            <NavLink to='/warehouse' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faWarehouse} />
               <p>Warehouse</p>
             </NavLink>
           </div>
         }
 
-        {userInfo.userId==='1' &&
-          <div className={styles.menuList}>
-            <NavLink to='/' className={styles.menuItem}>
-              <FontAwesomeIcon className={styles.menuIcon} icon={faBars} />
+        {userInfo.userCategory==='1' &&
+          <div className="menuList">
+            <NavLink to='/' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faBars} />
               <p>Dashboard</p>
             </NavLink>
-            <NavLink to='/product' className={styles.menuItem}>
-              <FontAwesomeIcon className={styles.menuIcon} icon={faBoxOpen} />
+            <NavLink to='/product' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faWarehouse} />
+              <p>Product</p>
+            </NavLink>
+            <NavLink to='/ingress' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faBoxOpen} />
               <p>Ingress</p>
             </NavLink>
           </div>
         }
          
-        {userInfo.userId==='2' &&
-          <div className={styles.menuList}>
-            <NavLink to='/' className={styles.menuItem}>
-              <FontAwesomeIcon className={styles.menuIcon} icon={faBars} />
+        {userInfo.userCategory==='2' &&
+          <div className="menuList">
+            <NavLink to='/' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faBars} />
               <p>Dashboard</p>
             </NavLink>
-            <NavLink to='/rough' className={styles.menuItem}>
-              <FontAwesomeIcon className={styles.menuIcon} icon={faBox} />
+            <NavLink to='/product' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faWarehouse} />
+              <p>Product</p>
+            </NavLink>
+            <NavLink to='/rough' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faBox} />
               <p>Rough</p>
             </NavLink>
           </div>
         }
 
-        {userInfo.userId==='3' &&
-          <div className={styles.menuList}>
-            <NavLink to='/' className={styles.menuItem}>
-              <FontAwesomeIcon className={styles.menuIcon} icon={faBars} />
+        {userInfo.userCategory==='3' &&
+          <div className="menuList">
+            <NavLink to='/' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faBars} />
               <p>Dashboard</p>
             </NavLink>
-            <NavLink to='/squash' className={styles.menuItem}>
-              <FontAwesomeIcon className={styles.menuIcon} icon={faHandsWash} />
+            <NavLink to='/product' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faWarehouse} />
+              <p>Product</p>
+            </NavLink>
+            <NavLink to='/squash' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faHandsWash} />
               <p>Squash</p>
             </NavLink>
           </div>
         }
 
-        {userInfo.userId==='4' &&
-          <div className={styles.menuList}>
-            <NavLink to='/' className={styles.menuItem}>
-              <FontAwesomeIcon className={styles.menuIcon} icon={faBars} />
+        {userInfo.userCategory==='4' &&
+          <div className="menuList">
+            <NavLink to='/' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faBars} />
               <p>Dashboard</p>
             </NavLink>
-            <NavLink to='/dry' className={styles.menuItem}>
-              <FontAwesomeIcon className={styles.menuIcon} icon={faSmog} />
+            <NavLink to='/product' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faWarehouse} />
+              <p>Product</p>
+            </NavLink>
+            <NavLink to='/dry' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faSmog} />
               <p>Dry</p>
             </NavLink>
           </div>
         }
         
-        {userInfo.userId==='5' &&
-          <div className={styles.menuList}>
-            <NavLink to='/' className={styles.menuItem}>
-              <FontAwesomeIcon className={styles.menuIcon} icon={faBars} />
+        {userInfo.userCategory==='5' &&
+          <div className="menuList">
+            <NavLink to='/' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faBars} />
               <p>Dashboard</p>
             </NavLink>
-            <NavLink to='/package' className={styles.menuItem}>
-              <FontAwesomeIcon className={styles.menuIcon} icon={faBoxesPacking} />
+            <NavLink to='/product' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faWarehouse} />
+              <p>Product</p>
+            </NavLink>
+            <NavLink to='/package' className="menuItem">
+              <FontAwesomeIcon className="menuIcon" icon={faBoxesPacking} />
               <p>Package</p>
             </NavLink>
           </div>
         }
       </div>
-      <Link to='/login' onClick={()=>{localStorage.removeItem("isLogin")}} className={styles.logout}>
-          <FontAwesomeIcon className={styles.menuIcon} icon={faRightFromBracket} />
+      <Link to='/login' onClick={()=>{localStorage.removeItem("isLogin")}} className="logout">
+          <FontAwesomeIcon className="menuIcon" icon={faRightFromBracket} />
           <p>Logout</p>
       </Link>
     </div>

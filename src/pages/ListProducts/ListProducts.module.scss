@@ -6,11 +6,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-
-        .buttonContainer{
-            padding: 0 3rem;
-
-        }
     }
     .content{
         padding: 2.5rem;
@@ -48,7 +43,7 @@
 
             tbody tr:hover{
                 // color: #009879;
-                color: var(--blue);
+                // color: var(--blue);
                 cursor: pointer;
             }
             // .userItemHeader{
@@ -63,6 +58,13 @@
             //     justify-content: space-between;
             //     padding: 1rem;
             // }
+            .download{
+                font-size:22px;
+
+                &:hover{
+                    color: var(--green);
+                }
+            }
         }
     }
 }

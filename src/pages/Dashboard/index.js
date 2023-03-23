@@ -22,7 +22,7 @@ const Dashboard = () => {
     <div className={styles.wrapper}>
       <Toast 
         toastType="success"
-        toastTitle="This is a success message"
+        toastTitle="Welcome to BlockTrace!"
         />
       {isShown && <Modal setIsShownQR={setIsShownQR} setIsShown={setIsShown}/>}
       {isShownQR && <QR setIsShownQR={setIsShownQR}/>}

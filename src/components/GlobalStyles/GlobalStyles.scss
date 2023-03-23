@@ -14,21 +14,31 @@
 
     //UI2
     --primary: #F0F4F9;
-    --secondary: #5B3BB5;
-    --secondary-hover: #5635af;
-    --text-color: #353535;
+    // --secondary: #5B3BB5;
+    // --secondary-hover: #5635af;
+    // --text-color: #353535;
     --text-white: #FBFBFB;
     --button-orange: #FD9434;
     --button-orange-hover: #eb8a2f;
     --button-green: #14C1BF;
     --button-green-hover: #08b7b4;
     --navy: #33197F;
-    --blue: #5185E5;
-
+    // --blue: #5185E5;
     --violet: #7b62ea;
     --completed: #3cc290;
     --pending: #f0ad4e;
     --not-available: #d9534f;
+
+    --button: #81BA49;
+    --button-hover: #75af3c;
+    --blue: #1877E9;
+    --yellow: #EBDD37;
+    --dark-yellow: #f7b142;
+    --text-color: #174756;
+    --secondary: #E7FCD1;
+    --sidebar-active: #81BA49;
+    --green: #317A4F;
+    --green-hover: #2d6a46;
 }
 *{
     margin: 0;
@@ -44,7 +54,7 @@ body{
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
-    color: var(--text-color)
+    color: var(--text-color);
 }
 
 /* width */

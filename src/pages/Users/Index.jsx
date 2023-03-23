@@ -45,7 +45,7 @@ const Users = () => {
                 <tbody>
                 { listUsers.map((user,index)=>{
                     return(
-                        <tr key={index}className={styles.userItem}>
+                        <tr key={index} className={styles.userItem}>
                             <td className={styles.userName}>
                                 <p>{user.fullName}</p>
                             </td>

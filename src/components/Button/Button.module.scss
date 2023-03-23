@@ -4,7 +4,7 @@
     padding: 1.5rem 0;
     border-radius: 6px;
 
-    background-color: var(--button-green);
+    background-color: var(--green);
     color: var(--primary);
 
     font-size: 1.5rem;
@@ -16,17 +16,17 @@
     }
     
     &:hover{
-        background-color: var(--button-green-hover);
+        background-color: var(--green-hover);
     }
 }
 
 .primary{
-    background-color: var(--button-orange);
+    background-color: var(--button);
     color: var(--text-white);
     font-weight: 600;
 
     &:hover{
-        background-color: var(--button-orange-hover);
+        background-color: var(--button-hover);
     }
 }
 

@@ -16,7 +16,7 @@ export const userInfoSlice = createSlice({
       state.fullName = action.payload.fullName
       state.userCccd = action.payload.userCccd
       state.userEmail = action.payload.userEmail
-      state.userId = action.payload.userId
+      state.userCategory = action.payload.userCategory
       state.userIsChecked = action.payload.userIsChecked
     },
   },

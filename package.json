@@ -17,6 +17,7 @@
     "axios": "^1.1.2",
     "clsx": "^1.2.1",
     "dvhcvn": "^1.0.20221001",
+    "file-saver": "^2.0.5",
     "formik": "^2.2.9",
     "html2canvas": "^1.4.1",
     "https-browserify": "^1.0.0",
